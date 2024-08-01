@@ -1,5 +1,7 @@
 package launcher;
 
+import openfl.Assets;
+import launcher.info.VersionsInfo;
 import flixel.FlxState;
 
 class LauncherState extends FlxState
@@ -90,6 +92,22 @@ class LauncherState extends FlxState
         if(FlxG.mouse.overlaps(playTxt))
         {
             playTxt.color = FlxColor.YELLOW;
+            if(FlxG.mouse.justPressed)
+            {
+                switch(VersionsInfo.currentVersion)
+                {
+                    case '0.4.1':
+                        var path:String = VersionsInfo.getAppdata() + '/0.4.1/Funkin.exe';
+                        if(Assets.exists(path))
+                        {
+                            // Open game
+                        }
+                        else
+                        {
+                            // Download game
+                        }
+                }
+            }
         }
         else
         {

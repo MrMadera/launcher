@@ -7,5 +7,6 @@ import flixel.util.FlxColor;
 import flixel.FlxState;
 import flixel.FlxSubState;
 import flixel.group.FlxSpriteGroup;
+import flixel.util.FlxSave;
 
 using StringTools;

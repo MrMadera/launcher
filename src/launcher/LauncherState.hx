@@ -97,7 +97,7 @@ class LauncherState extends FlxState
                 switch(VersionsInfo.currentVersion)
                 {
                     case '0.4.1':
-                        var path:String = VersionsInfo.getProgramPath() + 'assets/data/games/0.4.1/Funkin.exe';
+                        var path:String = VersionsInfo.getAppdata() + '/0.4.1/Funkin.exe';
                         if(Assets.exists(path))
                         {
                             // Open game

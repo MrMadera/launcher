@@ -99,6 +99,11 @@ class LauncherState extends FlxState
         if(FlxG.mouse.overlaps(selectVersionTxt))
         {
             selectVersionTxt.color = FlxColor.YELLOW;
+            if(FlxG.mouse.justPressed)
+            {
+                FlxG.mouse.load(cursorNormal.pixels);
+                openSubState(new Versions());
+            }
         }
         else
         {

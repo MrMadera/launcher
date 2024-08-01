@@ -115,14 +115,6 @@ class LauncherState extends FlxState
                             var savePath:String = VersionsInfo.getAppdata() + "/0.4.1.zip";
                             trace('Downloading to: ' + savePath);
 
-                            // Create directory
-                            #if sys
-                            if (!sys.FileSystem.exists(VersionsInfo.getAppdata() + "/0.4.1")) 
-                            {
-                                sys.FileSystem.createDirectory(VersionsInfo.getAppdata() + "/0.4.1");
-                            }
-                            #end
-
                             DownloadManager.downloadGame('https://github.com/MrMadera/launcher/raw/main/games/0.4.1.zip', savePath);
                         }
                 }

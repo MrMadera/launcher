@@ -1,9 +1,11 @@
 package launcher;
 
-import launcher.download.DownloadManager;
+import launcher.download.DownloadingSubState;
+import farfadox.utils.net.downloads.GoogleDriveDownloader;
 import openfl.Assets;
 import launcher.info.VersionsInfo;
 import flixel.FlxState;
+import sys.io.Process;
 
 #if sys
 import sys.io.File;
@@ -61,7 +63,7 @@ class LauncherState extends FlxState
         selectVersionTxt.setFormat('assets/fonts/FNFWeekTextFont-Regular.ttf', 60, 0xFFFFFFFF, CENTER);
         selectVersionTxt.antialiasing = true;
         selectVersionTxt.screenCenter(X);
-        selectVersionTxt.x -= 350;
+        selectVersionTxt.x -= 375;
         add(selectVersionTxt);
         
         signInTxt = new FlxText(0, 635, 0, 'Sign in', 12);
@@ -78,6 +80,7 @@ class LauncherState extends FlxState
 
         updateCursor();
         updateColors();
+        updateTexts();
     }
 
     public function updateCursor()
@@ -92,6 +95,39 @@ class LauncherState extends FlxState
         }
     }
 
+    public function updateTexts()
+    {
+        switch(VersionsInfo.currentVersion)
+        {
+            case '0.4.1':
+                var path:String = VersionsInfo.getAppdata() + '/downloads/fnf_041.zip';
+                var pathFolder:String = VersionsInfo.getAppdata() + '/downloads/fnf_041/';
+                if(sys.FileSystem.exists(path) || sys.FileSystem.exists(pathFolder))
+                {
+                    playTxt.text = 'Play';
+                    playTxt.screenCenter(X);
+                }
+                else
+                {
+                    playTxt.text = 'Download';
+                    playTxt.screenCenter(X);
+                }
+            case '0.4.0':
+                var path:String = VersionsInfo.getAppdata() + '/downloads/fnf_040.zip';
+                var pathFolder:String = VersionsInfo.getAppdata() + '/downloads/fnf_040/';
+                if(sys.FileSystem.exists(path) || sys.FileSystem.exists(pathFolder))
+                {
+                    playTxt.text = 'Play';
+                    playTxt.screenCenter(X);
+                }
+                else
+                {
+                    playTxt.text = 'Download';
+                    playTxt.screenCenter(X);
+                }
+        }
+    }
+
     public function updateColors()
     {
         if(FlxG.mouse.overlaps(playTxt))
@@ -102,8 +138,10 @@ class LauncherState extends FlxState
                 switch(VersionsInfo.currentVersion)
                 {
                     case '0.4.1':
-                        var path:String = VersionsInfo.getAppdata() + '/0.4.1/Funkin.exe';
-                        if(Assets.exists(path))
+                        var path:String = VersionsInfo.getAppdata() + '/downloads/fnf_041.zip';
+                        trace('Super path: ' + path);
+                        var pathFolder:String = VersionsInfo.getAppdata() + '/downloads/fnf_041/';
+                        if(sys.FileSystem.exists(path) || sys.FileSystem.exists(pathFolder))
                         {
                             // Open game
                             trace('Open game!');
@@ -112,10 +150,37 @@ class LauncherState extends FlxState
                         {
                             // Download game
                             trace('Download game!');
-                            var savePath:String = VersionsInfo.getAppdata() + "/0.4.1.zip";
-                            trace('Downloading to: ' + savePath);
 
-                            DownloadManager.downloadGame('https://github.com/MrMadera/launcher/raw/main/games/0.4.1.zip', savePath);
+                            //DownloadManager.downloadGame('https://github.com/MrMadera/launcher/raw/main/games/0.4.1.zip', savePath);
+                            GoogleDriveDownloader.extension = 'zip';
+                            GoogleDriveDownloader.autoUnzip = true;
+                            GoogleDriveDownloader.customOutputPath = VersionsInfo.getAppdata();
+                            new GoogleDriveDownloader('https://drive.google.com/file/d/1vVjTvzBsTbtihZaIky1Z8xW24ocUicEv/view?usp=sharing', 'fnf_041');
+                            openSubState(new DownloadingSubState(true));
+                        }
+                    case '0.4.0':
+                        var path:String = VersionsInfo.getAppdata() + '/downloads/fnf_040.zip';
+                        var pathFolder:String = VersionsInfo.getAppdata() + '/downloads/fnf_040/';
+                        if(sys.FileSystem.exists(path) || sys.FileSystem.exists(pathFolder))
+                        {
+                            // Open game
+                            trace('Open game!');
+                            try
+                            {
+                                
+                            }
+                        }
+                        else
+                        {
+                            // Download game
+                            trace('Download game!');
+
+                            //DownloadManager.downloadGame('https://github.com/MrMadera/launcher/raw/main/games/0.4.1.zip', savePath);
+                            GoogleDriveDownloader.extension = 'zip';
+                            GoogleDriveDownloader.autoUnzip = true;
+                            GoogleDriveDownloader.customOutputPath = VersionsInfo.getAppdata();
+                            new GoogleDriveDownloader('https://drive.google.com/file/d/13_Wxf0E0C4CA8YYPNCPfVGMnazLCJ26I/view?usp=sharing', 'fnf_040');
+                            openSubState(new DownloadingSubState(true));
                         }
                 }
             }

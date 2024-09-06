@@ -1,7 +1,7 @@
 package launcher;
 
 import launcher.info.VersionsInfo;
-import launcher.objs.LauncherButton;
+import farfadox.utils.ui.CustomButton as LauncherButton;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.FlxG;
 import flixel.FlxSprite;
@@ -61,7 +61,7 @@ class Versions extends FlxSubState {
 
     public function onPressVersionButton():Void 
     {
-        VersionsInfo.currentVersion = versionsGrp.members[curSelected].text;
+        VersionsInfo.currentVersion = versionsGrp.members[curSelected].txt.text;
         trace('CURRENT VERSION: ' + VersionsInfo.currentVersion);
 
         close();

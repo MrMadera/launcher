@@ -45,7 +45,8 @@ class DownloadingSubState extends FlxSubState
 		downloadBytesStatus.setFormat("VCR OSD Mono", 46, FlxColor.WHITE, LEFT);
         add(downloadBytesStatus);
 
-        processBar = new FlxBar(0, 400, LEFT_TO_RIGHT, 666, 26, this, 'percent', 0, 1);
+        processBar = new FlxBar(0, 400, LEFT_TO_RIGHT, 666, 10, this, 'percent', 0, 1);
+        processBar.createFilledBar(FlxColor.GRAY, 0xFFFFFFFF);
         processBar.screenCenter(X);
         add(processBar);
     }

@@ -33,19 +33,19 @@ class DownloadingSubState extends FlxSubState
 
         isGDrive = _isGDrive;
         
-        var bg:FlxSprite = new FlxSprite().makeGraphic(1920, 1080, 0xFF000000);
+        var bg:FlxSprite = new FlxSprite().makeGraphic(1280, 720, 0xFF000000);
         bg.alpha = 0.6;
         add(bg);
 
-        downloadStatus = new FlxText(0, 400, 0, '');
-		downloadStatus.setFormat("VCR OSD Mono", 70, FlxColor.WHITE, LEFT);
+        downloadStatus = new FlxText(0, 266, 0, '');
+		downloadStatus.setFormat("VCR OSD Mono", 46, FlxColor.WHITE, LEFT);
         add(downloadStatus);
 
-        downloadBytesStatus = new FlxText(0, 500, 0, '');
-		downloadBytesStatus.setFormat("VCR OSD Mono", 70, FlxColor.WHITE, LEFT);
+        downloadBytesStatus = new FlxText(0, 333, 0, '');
+		downloadBytesStatus.setFormat("VCR OSD Mono", 46, FlxColor.WHITE, LEFT);
         add(downloadBytesStatus);
 
-        processBar = new FlxBar(0, 600, LEFT_TO_RIGHT, 1000, 40, this, 'percent', 0, 1);
+        processBar = new FlxBar(0, 400, LEFT_TO_RIGHT, 666, 26, this, 'percent', 0, 1);
         processBar.screenCenter(X);
         add(processBar);
     }

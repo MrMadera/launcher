@@ -145,6 +145,9 @@ class LauncherState extends FlxState
                         {
                             // Open game
                             trace('Open game!');
+                            var path = 'C:\\Users\\User\\AppData\\Roaming\\MrMadera\\Launcher\\downloads\\fnf_041\\0.4.1\\Funkin.exe';
+                            var process = new sys.io.Process(path);
+                            Sys.exit(1);
                         }
                         else
                         {
@@ -165,10 +168,9 @@ class LauncherState extends FlxState
                         {
                             // Open game
                             trace('Open game!');
-                            try
-                            {
-                                
-                            }
+                            var path = 'C:\\Users\\User\\AppData\\Roaming\\MrMadera\\Launcher\\downloads\\fnf_040\\0.4.0\\Funkin.exe';
+                            var process = new sys.io.Process(path);
+                            Sys.exit(1);
                         }
                         else
                         {
